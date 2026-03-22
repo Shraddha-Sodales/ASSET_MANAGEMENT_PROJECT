@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="ASM_T_ALLREQUESTS" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="true" application="BAS" mdsCubeConversionExecution="AT_LOADING_TIME">
+<descriptions defaultDescription="ASM_T_ALLREQUESTS"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="ASM_T_ASREQ">
+    <resourceUri>ASM_T_ASREQ</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <viewAttributes>
+      <viewAttribute id="ASRID"/>
+      <viewAttribute id="REQID"/>
+      <viewAttribute id="USRID"/>
+      <viewAttribute id="CATID"/>
+      <viewAttribute id="ASTID"/>
+      <viewAttribute id="RDATE"/>
+      <viewAttribute id="STAT"/>
+      <viewAttribute id="PRITY"/>
+      <viewAttribute id="APBY"/>
+      <viewAttribute id="APAT"/>
+      <viewAttribute id="ISDEL"/>
+      <viewAttribute id="CRTDT"/>
+      <viewAttribute id="CRTTM"/>
+      <viewAttribute id="CRTBY"/>
+      <viewAttribute id="CHNDT"/>
+      <viewAttribute id="CHNTM"/>
+      <viewAttribute id="CHNBY"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="ASM_T_ASREQ"/>
+  </calculationView>
+</calculationViews>
+
+<logicalModel id="Projection_1">
+  <attributes>
+    <attribute id="ASRID" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Unique ID"/>
+      <keyMapping columnObjectName="Projection_1" columnName="ASRID"/>
+    </attribute>
+    <attribute id="REQID" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Request ID"/>
+      <keyMapping columnObjectName="Projection_1" columnName="REQID"/>
+    </attribute>
+    <attribute id="USRID" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="User ID"/>
+      <keyMapping columnObjectName="Projection_1" columnName="USRID"/>
+    </attribute>
+    <attribute id="CATID" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Category ID"/>
+      <keyMapping columnObjectName="Projection_1" columnName="CATID"/>
+    </attribute>
+    <attribute id="ASTID" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Asset ID"/>
+      <keyMapping columnObjectName="Projection_1" columnName="ASTID"/>
+    </attribute>
+    <attribute id="RDATE" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Request Date"/>
+      <keyMapping columnObjectName="Projection_1" columnName="RDATE"/>
+    </attribute>
+    <attribute id="STAT" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Status"/>
+      <keyMapping columnObjectName="Projection_1" columnName="STAT"/>
+    </attribute>
+    <attribute id="PRITY" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Priority"/>
+      <keyMapping columnObjectName="Projection_1" columnName="PRITY"/>
+    </attribute>
+    <attribute id="APBY" order="9" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Approved By"/>
+      <keyMapping columnObjectName="Projection_1" columnName="APBY"/>
+    </attribute>
+    <attribute id="APAT" order="10" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Approved At"/>
+      <keyMapping columnObjectName="Projection_1" columnName="APAT"/>
+    </attribute>
+    <attribute id="ISDEL" order="11" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Is Deleted Flag"/>
+      <keyMapping columnObjectName="Projection_1" columnName="ISDEL"/>
+    </attribute>
+    <attribute id="CRTDT" order="12" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Created Date"/>
+      <keyMapping columnObjectName="Projection_1" columnName="CRTDT"/>
+    </attribute>
+    <attribute id="CRTTM" order="13" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Created Time"/>
+      <keyMapping columnObjectName="Projection_1" columnName="CRTTM"/>
+    </attribute>
+    <attribute id="CRTBY" order="14" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Created By"/>
+      <keyMapping columnObjectName="Projection_1" columnName="CRTBY"/>
+    </attribute>
+    <attribute id="CHNDT" order="15" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Changed/Updated Date"/>
+      <keyMapping columnObjectName="Projection_1" columnName="CHNDT"/>
+    </attribute>
+    <attribute id="CHNTM" order="16" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Changed/Updated Time"/>
+      <keyMapping columnObjectName="Projection_1" columnName="CHNTM"/>
+    </attribute>
+    <attribute id="CHNBY" order="17" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Changed By"/>
+      <keyMapping columnObjectName="Projection_1" columnName="CHNBY"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+    
+  
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="100" y="204"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

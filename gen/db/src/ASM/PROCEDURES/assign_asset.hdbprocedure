@@ -1,0 +1,82 @@
+PROCEDURE assign_asset (
+    IN P_REQID INTEGER,
+    IN P_ASTID INTEGER,
+    IN P_USER  INTEGER
+)
+LANGUAGE SQLSCRIPT
+AS
+BEGIN
+
+    DECLARE V_USRID INTEGER;
+    DECLARE V_REQ_COUNT INTEGER;
+    DECLARE V_AST_COUNT INTEGER;
+    DECLARE V_AST_STATUS NVARCHAR(20);
+
+    
+    SELECT COUNT(*) INTO V_REQ_COUNT
+    FROM "ASM_T_ASREQ"
+    WHERE REQID = :P_REQID;
+
+    IF :V_REQ_COUNT = 0 THEN
+        SIGNAL SQL_ERROR_CODE 10001
+        SET MESSAGE_TEXT = 'Request not found';
+    END IF;
+
+    
+    SELECT COUNT(*) INTO V_AST_COUNT
+    FROM "ASM_T_ASSET"
+    WHERE ASTID = :P_ASTID;
+
+    IF :V_AST_COUNT = 0 THEN
+        SIGNAL SQL_ERROR_CODE 10002
+        SET MESSAGE_TEXT = 'Asset not found';
+    END IF;
+
+    SELECT ASTST INTO V_AST_STATUS
+    FROM "ASM_T_ASSET"
+    WHERE ASTID = :P_ASTID;
+
+    
+    IF :V_AST_STATUS <> 'AVAILABLE' THEN
+        SIGNAL SQL_ERROR_CODE 10003
+        SET MESSAGE_TEXT = 'Asset not available';
+    END IF;
+
+    
+    SELECT USRID INTO V_USRID
+    FROM "ASM_T_ASREQ"
+    WHERE REQID = :P_REQID;
+
+    
+    INSERT INTO "ASM_T_ASAMT" (
+        ASTID,
+        USRID,
+        ASDAT,
+        STAT,
+        ISDEL,
+        CRTDT,
+        CRTTM,
+        CRTBY
+    )
+    VALUES (
+        :P_ASTID,
+        :V_USRID,
+        CURRENT_TIMESTAMP,
+        1,
+        'N',
+        CURRENT_DATE,
+        CURRENT_TIME,
+        'SYSTEM'
+    );
+
+   
+    UPDATE "ASM_T_ASREQ"
+    SET STAT = 3
+    WHERE REQID = :P_REQID;
+
+   
+    UPDATE "ASM_T_ASSET"
+    SET ASTST = 'ASSIGNED'
+    WHERE ASTID = :P_ASTID;
+
+END;

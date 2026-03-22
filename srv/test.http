@@ -1,0 +1,32 @@
+# POST http://localhost:4004/odata/v4/employee/CreateRequest
+# Content-Type: application/json
+
+# {
+# "CATID": 1,
+# "ASTID": 101
+# }
+//GET http://localhost:4004/odata/v4/manager/AllRequest
+#            POST http://localhost:4004/odata/v4/manager/ApproveRequest
+# Content-Type: application/json
+
+# {
+#   "REQID": 1,
+#   "STATUS": 1
+# }
+# POST http://localhost:4004/odata/v4/manager/AssignAsset
+# Content-Type: application/json
+
+# {
+#   "REQID": 1,
+#   "ASTID": 101
+# }
+POST http://localhost:4004/odata/v4/manager/insertAsset
+Content-Type: application/json
+
+{
+  "P_ASTID": 101,
+  "P_ASTNAME": "Dell Laptop",
+  "P_CATID": 1,
+  "P_SUBCATID": 10,
+  "P_QTY": 5
+}

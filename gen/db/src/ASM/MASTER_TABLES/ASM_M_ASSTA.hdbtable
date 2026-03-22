@@ -1,0 +1,20 @@
+COLUMN TABLE ASM_M_ASSTA (
+    ASTID BIGINT PRIMARY KEY GENERATED ALWAYS AS IDENTITY COMMENT 'Unique ID',
+
+    STSID INTEGER COMMENT 'Status ID',
+    STSCD NVARCHAR(10) COMMENT 'Status Code',
+    STSNM NVARCHAR(50) COMMENT 'Status Name',
+    STSDS NVARCHAR(255) COMMENT 'Status Description',
+
+    STAT INTEGER COMMENT 'Record Status (Active/Inactive)',
+
+    ISDEL NVARCHAR(1) COMMENT 'Is Deleted Flag',
+
+    CRTDT DATE COMMENT 'Created Date',
+    CRTTM TIME COMMENT 'Created Time',
+    CRTBY NVARCHAR(30) COMMENT 'Created By',
+
+    CHNDT DATE COMMENT 'Changed/Updated Date',
+    CHNTM TIME COMMENT 'Changed/Updated Time',
+    CHNBY NVARCHAR(30) COMMENT 'Changed By'
+);

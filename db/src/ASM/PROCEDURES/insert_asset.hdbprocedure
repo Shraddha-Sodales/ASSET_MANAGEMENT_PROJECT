@@ -1,0 +1,75 @@
+PROCEDURE insert_asset (
+    IN P_ASTID       INTEGER,
+    IN P_ASTNAME     NVARCHAR(100),
+    IN P_CATID       INTEGER,
+    IN P_SUBCATID    INTEGER,
+    IN P_QTY         INTEGER,
+    IN P_USER        INTEGER
+)
+LANGUAGE SQLSCRIPT
+AS
+BEGIN
+
+    DECLARE V_COUNT INTEGER := 0;
+    DECLARE V_ROLE  NVARCHAR(50);
+
+    -- Get role name
+    SELECT R.ROLNM INTO V_ROLE
+    FROM "ASM_M_USEDT" U
+    JOIN "ASM_M_ROLED" R
+        ON U.ROLID = R.ROLD
+    WHERE U.USRID = :P_USER;
+
+    -- User not found
+    IF :V_ROLE IS NULL THEN
+        SIGNAL SQL_ERROR_CODE 10020
+        SET MESSAGE_TEXT = 'User not found';
+    END IF;
+
+    -- Authorization check
+    IF :V_ROLE <> 'asset_manager' THEN
+        SIGNAL SQL_ERROR_CODE 10021
+        SET MESSAGE_TEXT = 'Unauthorized: Only Asset Manager can create assets';
+    END IF;
+
+    -- Check duplicate asset
+    SELECT COUNT(*) INTO V_COUNT
+    FROM "ASM_T_ASSET"
+    WHERE ASTID = :P_ASTID;
+
+    IF :V_COUNT > 0 THEN
+        SIGNAL SQL_ERROR_CODE 10022
+        SET MESSAGE_TEXT = 'Asset already exists';
+    END IF;
+
+    -- Insert asset
+    INSERT INTO "ASM_T_ASSET" (
+        ASTID,
+        ASTNAME,
+        CATID,
+        SUBCATID,
+        SERIALNO,
+        ASTST,
+        PURCHASEDATE,
+        PRICE,
+        ISDEL,
+        CRTDT,
+        CRTTM,
+        CRTBY
+    )
+    VALUES (
+        :P_ASTID,
+        :P_ASTNAME,
+        :P_CATID,
+        :P_SUBCATID,
+        NULL,
+        'AVAILABLE',
+        NULL,
+        NULL,
+        'N',
+        CURRENT_DATE,
+        CURRENT_TIME,
+        :P_USER
+    );
+
+END;

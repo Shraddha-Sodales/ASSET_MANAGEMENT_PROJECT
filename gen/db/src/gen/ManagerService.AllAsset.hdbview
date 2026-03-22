@@ -1,0 +1,17 @@
+VIEW ManagerService_AllAsset AS SELECT
+  Asset_0.ASTID,
+  Asset_0.ASTNAME,
+  Asset_0.CATID,
+  Asset_0.SUBCATID,
+  Asset_0.SERIALNO,
+  Asset_0.ASTST,
+  Asset_0.PURCHASEDATE,
+  Asset_0.PRICE,
+  Asset_0.ISDEL,
+  Asset_0.CRTDT,
+  Asset_0.CRTTM,
+  Asset_0.CRTBY,
+  Asset_0.CHNDT,
+  Asset_0.CHNTM,
+  Asset_0.CHNBY
+FROM ASM_T_Asset AS Asset_0

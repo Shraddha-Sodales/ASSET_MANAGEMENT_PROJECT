@@ -1,0 +1,18 @@
+COLUMN TABLE ASM_M_ROLED (
+    AMRID BIGINT PRIMARY KEY GENERATED ALWAYS AS IDENTITY COMMENT 'Unique ID',
+
+    ROLD INTEGER COMMENT 'role id',
+    ROLNM NVARCHAR(100) COMMENT 'role name',
+    
+    RLDIS NVARCHAR COMMENT 'Role discription',
+
+    ISDEL NVARCHAR(1) COMMENT 'Is Deleted Flag',
+
+    CRTDT DATE COMMENT 'Created Date',
+    CRTTM TIME COMMENT 'Created Time',
+    CRTBY NVARCHAR(30) COMMENT 'Created By',
+
+    CHNDT DATE COMMENT 'Changed/Updated Date',
+    CHNTM TIME COMMENT 'Changed/Updated Time',
+    CHNBY NVARCHAR(30) COMMENT 'Changed By'
+);

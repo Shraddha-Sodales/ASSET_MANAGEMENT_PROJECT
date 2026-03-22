@@ -1,0 +1,39 @@
+PROCEDURE asset_approve_request (
+    IN P_REQID INTEGER,
+    IN P_STATUS INTEGER,   
+    IN P_USER INTEGER
+)
+LANGUAGE SQLSCRIPT
+AS
+BEGIN
+
+   
+    UPDATE "ASM_T_ASREQ"
+    SET STAT = :P_STATUS,
+        APBY = :P_USER,
+        APAT = CURRENT_TIMESTAMP
+    WHERE REQID = :P_REQID;
+
+    
+    INSERT INTO "ASM_T_REQHI" (
+        REQID,
+        STAT,
+        CHBY,
+        CHAT,
+        ISDEL,
+        CRTDT,
+        CRTTM,
+        CRTBY
+    )
+    VALUES (
+        :P_REQID,
+        :P_STATUS,
+        :P_USER,
+        CURRENT_TIMESTAMP,
+        'N',
+        CURRENT_DATE,
+        CURRENT_TIME,
+        'SYSTEM'
+    );
+
+END;

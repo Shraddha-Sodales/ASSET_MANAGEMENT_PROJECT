@@ -1,0 +1,48 @@
+PROCEDURE create_request (
+    IN P_USRID INTEGER,
+    IN P_CATID INTEGER,
+    IN P_ASTID INTEGER,         
+    IN P_PRITY NVARCHAR(20)    
+    
+)
+LANGUAGE SQLSCRIPT
+SQL SECURITY INVOKER
+AS
+BEGIN
+
+    DECLARE V_REQID INTEGER;
+
+
+    SELECT IFNULL(MAX(REQID), 0) + 1 INTO V_REQID FROM "ASM_T_ASREQ";
+
+    
+    INSERT INTO "ASM_T_ASREQ" (
+        REQID,
+        USRID,
+        CATID,
+        ASTID,      
+        RDATE,
+        STAT,
+        PRITY,
+       
+        ISDEL,
+        CRTDT,
+        CRTTM,
+        CRTBY
+    )
+    VALUES (
+        :V_REQID,
+        :P_USRID,
+        :P_CATID,
+        :P_ASTID,     
+        CURRENT_TIMESTAMP,
+        0,            
+        :P_PRITY,
+        
+        'N',
+        CURRENT_DATE,
+        CURRENT_TIME,
+        'SYSTEM'
+    );
+
+END;
