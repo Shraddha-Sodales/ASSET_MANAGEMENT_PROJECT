@@ -13,5 +13,13 @@ module.exports = (srv) => {
 
     return 'Request Created';
   });
+    srv.on("getRequestsByUserId", async (req) => {
+
+    const { USERID } = req.data;
+
+    return await SELECT.from("EmployeeService.AllRequest")
+      .where({ USRID: USERID });  
+
+  });
 
 };

@@ -1,6 +1,6 @@
 using {ASM as db} from '/home/user/asset_management/db/schema.cds';
 
-service ManagerService @(requiers:'asset_manager'){
+service ManagerService {
   entity AllRequest as projection on db.T.ALLREQUESTS;
   entity AllAsset as projection on db.T.Asset;
   
@@ -20,10 +20,10 @@ service ManagerService @(requiers:'asset_manager'){
     ) returns String;
 
     action insertAsset (
-  P_ASTID    : Integer,
-  P_ASTNAME  : String,
-  P_CATID    : Integer,
-  P_SUBCATID : Integer,
-  P_QTY      : Integer
+    P_ASTID    : Integer,
+    P_ASTNAME  : String,
+    P_CATID    : Integer,
+    P_SUBCATID : Integer,
+    P_QTY      : Integer
 );
 }
