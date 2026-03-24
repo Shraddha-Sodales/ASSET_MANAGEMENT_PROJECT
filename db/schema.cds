@@ -3,8 +3,8 @@ context M{
 @cds.persistence.exists 
 @cds.persistence.calcview 
 Entity ASSETCATGORY {
-key     ACTID: Integer64  @title: 'ACTID: Unique ID' ; 
-        CATID: Integer  @title: 'CATID: Category ID' ; 
+key     ACTID: String(30)  @title: 'ACTID: Unique ID' ; 
+        CATID: String(30)  @title: 'CATID: Category ID' ; 
         CNAME: String(100)  @title: 'CNAME: Category Name' ; 
         CDESC: String(255)  @title: 'CDESC: Category Description' ; 
         STAT: String(50)  @title: 'STAT: Status' ; 
@@ -19,10 +19,10 @@ key     ACTID: Integer64  @title: 'ACTID: Unique ID' ;
 @cds.persistence.exists 
 @cds.persistence.calcview 
 Entity Assetsubcategory {
-key     ASCID: Integer64  @title: 'ASCID: Unique ID' ; 
-        SCTID: Integer  @title: 'SCTID:  SUB Category ID' ; 
+key     ASCID: String(30)  @title: 'ASCID: Unique ID' ; 
+        SCTID: String(30)  @title: 'SCTID:  SUB Category ID' ; 
         SCNAM: String(100)  @title: 'SCNAM: SUB Category Name' ; 
-        CATID: Integer  @title: 'CATID: Category ID' ; 
+        CATID: String(30) @title: 'CATID: Category ID' ; 
         ISDEL: String(1)  @title: 'ISDEL: Is Deleted Flag' ; 
         CRTDT: Date  @title: 'CRTDT: Created Date' ; 
         CRTTM: Time  @title: 'CRTTM: Created Time' ; 
@@ -30,6 +30,7 @@ key     ASCID: Integer64  @title: 'ASCID: Unique ID' ;
         CHNDT: Date  @title: 'CHNDT: Changed/Updated Date' ; 
         CHNTM: Time  @title: 'CHNTM: Changed/Updated Time' ; 
         CHNBY: String(30)  @title: 'CHNBY: Changed By' ; 
+        
 }
 
     
@@ -38,10 +39,10 @@ context T{
     @cds.persistence.exists 
     Entity asset_requests {
 key     ASRID: Integer64  @title: 'ASRID: Unique ID' ; 
-        REQID: Integer  @title: 'REQID: Request ID' ; 
+        REQID: String(30)  @title: 'REQID: Request ID' ; 
         USRID: Integer  @title: 'USRID: User ID' ; 
-        CATID: Integer  @title: 'CATID: Category ID' ; 
-        ASTID: Integer  @title: 'ASTID: Asset ID' ; 
+        CATID: String(30)  @title: 'CATID: Category ID' ; 
+        ASTID: String(30)  @title: 'ASTID: Asset ID' ; 
         RDATE: Timestamp  @title: 'RDATE: Request Date' ; 
         STAT: Integer  @title: 'STAT: Status' ; 
         PRITY: String(20)  @title: 'PRITY: Priority' ; 
@@ -60,10 +61,10 @@ key     ASRID: Integer64  @title: 'ASRID: Unique ID' ;
 @cds.persistence.calcview 
 Entity ALLREQUESTS {
 key     ASRID: Integer64  @title: 'ASRID: Unique ID' ; 
-        REQID: Integer  @title: 'REQID: Request ID' ; 
-        USRID: Integer  @title: 'USRID: User ID' ; 
-        CATID: Integer  @title: 'CATID: Category ID' ; 
-        ASTID: Integer  @title: 'ASTID: Asset ID' ; 
+        REQID: String(30)  @title: 'REQID: Request ID' ; 
+        USRID: String(30)  @title: 'USRID: User ID' ; 
+        CATID: String(30)  @title: 'CATID: Category ID' ; 
+        ASTID: String(30)  @title: 'ASTID: Asset ID' ; 
         RDATE: Timestamp  @title: 'RDATE: Request Date' ; 
         STAT: Integer  @title: 'STAT: Status' ; 
         PRITY: String(20)  @title: 'PRITY: Priority' ; 
@@ -80,10 +81,10 @@ key     ASRID: Integer64  @title: 'ASRID: Unique ID' ;
 @cds.persistence.exists 
 @cds.persistence.calcview 
 Entity Asset {
-key     ASTID: Integer  @title: 'ASTID: Unique ID' ; 
+key     ASTID: String(30)  @title: 'ASTID: Unique ID' ; 
         ASTNAME: String(100)  @title: 'ASTNAME: Asset Name' ; 
-        CATID: Integer  @title: 'CATID: Category ID' ; 
-        SUBCATID: Integer  @title: 'SUBCATID: Sub Category ID' ; 
+        CATID: String(30)  @title: 'CATID: Category ID' ; 
+        SUBCATID: String(30)  @title: 'SUBCATID: Sub Category ID' ; 
         SERIALNO: String(50)  @title: 'SERIALNO: Serial Number' ; 
         ASTST: String(20)  @title: 'ASTST: Asset Status (AVAILABLE / ASSIGNED / MAINTENANCE)' ; 
         PURCHASEDATE: Date  @title: 'PURCHASEDATE: Purchase Date' ; 

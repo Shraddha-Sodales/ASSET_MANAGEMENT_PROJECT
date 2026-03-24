@@ -1,8 +1,8 @@
 PROCEDURE insert_asset (
-    IN P_ASTID       INTEGER,
+    IN P_ASTID       NVARCHAR(30),
     IN P_ASTNAME     NVARCHAR(100),
-    IN P_CATID       INTEGER,
-    IN P_SUBCATID    INTEGER,
+    IN P_CATID       NVARCHAR(30),
+    IN P_SUBCATID    NVARCHAR(30),
     IN P_QTY         INTEGER,
     IN P_USER        INTEGER
 )

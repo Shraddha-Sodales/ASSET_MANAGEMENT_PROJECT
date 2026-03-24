@@ -35,7 +35,7 @@
 
 <logicalModel id="Projection_1">
   <attributes>
-    <attribute id="ASTID" order="1">
+    <attribute id="ASTID" order="1" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="Unique ID"/>
       <keyMapping columnObjectName="Projection_1" columnName="ASTID"/>
     </attribute>
@@ -43,11 +43,11 @@
       <descriptions defaultDescription="Asset Name"/>
       <keyMapping columnObjectName="Projection_1" columnName="ASTNAME"/>
     </attribute>
-    <attribute id="CATID" order="3">
+    <attribute id="CATID" order="3" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="Category ID"/>
       <keyMapping columnObjectName="Projection_1" columnName="CATID"/>
     </attribute>
-    <attribute id="SUBCATID" order="4">
+    <attribute id="SUBCATID" order="4" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="Sub Category ID"/>
       <keyMapping columnObjectName="Projection_1" columnName="SUBCATID"/>
     </attribute>
@@ -63,7 +63,7 @@
       <descriptions defaultDescription="Purchase Date"/>
       <keyMapping columnObjectName="Projection_1" columnName="PURCHASEDATE"/>
     </attribute>
-    <attribute id="PRICE" order="8">
+    <attribute id="PRICE" order="8" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="Asset Price"/>
       <keyMapping columnObjectName="Projection_1" columnName="PRICE"/>
     </attribute>
@@ -75,7 +75,7 @@
       <descriptions defaultDescription="Created Date"/>
       <keyMapping columnObjectName="Projection_1" columnName="CRTDT"/>
     </attribute>
-    <attribute id="CRTTM" order="11">
+    <attribute id="CRTTM" order="11" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="Created Time"/>
       <keyMapping columnObjectName="Projection_1" columnName="CRTTM"/>
     </attribute>
@@ -87,7 +87,7 @@
       <descriptions defaultDescription="Changed/Updated Date"/>
       <keyMapping columnObjectName="Projection_1" columnName="CHNDT"/>
     </attribute>
-    <attribute id="CHNTM" order="14">
+    <attribute id="CHNTM" order="14" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="Changed/Updated Time"/>
       <keyMapping columnObjectName="Projection_1" columnName="CHNTM"/>
     </attribute>

@@ -13,8 +13,8 @@ module.exports = (srv) => {
 
   await cds.run(
     `CALL assign_asset(?, ?, ?)`,
-    [Number(REQID),
-         Number(ASTID),
+    [String(REQID),
+         String(ASTID),
           userId]
   );
 
@@ -30,8 +30,8 @@ module.exports = (srv) => {
   await cds.run(
     `CALL asset_approve_request(?, ?, ?)`,
     [
-      Number(REQID),
-      Number(STATUS),
+      String(REQID),
+      String(STATUS),
       userId
     ]
   );
@@ -55,11 +55,11 @@ srv.on('insertAsset', async (req) => {
   await cds.run(
     `CALL insert_asset(?, ?, ?, ?, ?, ?)`,
     [
-      Number(P_ASTID),
+      String(P_ASTID),
       P_ASTNAME,
-      Number(P_CATID),
-      Number(P_SUBCATID),
-      Number(P_QTY),
+      String(P_CATID),
+      String(P_SUBCATID),
+      String(P_QTY),
       userId
     ]
   );

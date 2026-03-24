@@ -1,6 +1,6 @@
 PROCEDURE assign_asset (
-    IN P_REQID INTEGER,
-    IN P_ASTID INTEGER,
+    IN P_REQID NVARCHAR(30),
+    IN P_ASTID NVARCHAR(30),
     IN P_USER  INTEGER
 )
 LANGUAGE SQLSCRIPT
@@ -12,7 +12,7 @@ BEGIN
     DECLARE V_AST_COUNT INTEGER;
     DECLARE V_AST_STATUS NVARCHAR(20);
 
-    
+    -- Check request exists
     SELECT COUNT(*) INTO V_REQ_COUNT
     FROM "ASM_T_ASREQ"
     WHERE REQID = :P_REQID;
@@ -22,32 +22,42 @@ BEGIN
         SET MESSAGE_TEXT = 'Request not found';
     END IF;
 
-    
+    -- Check asset exists
     SELECT COUNT(*) INTO V_AST_COUNT
     FROM "ASM_T_ASSET"
     WHERE ASTID = :P_ASTID;
 
     IF :V_AST_COUNT = 0 THEN
-        SIGNAL SQL_ERROR_CODE 10002
-        SET MESSAGE_TEXT = 'Asset not found';
+        -- Reject request
+        UPDATE "ASM_T_ASREQ"
+        SET STAT = 2
+        WHERE REQID = :P_REQID;
+
+        RETURN;
     END IF;
 
+    -- Get asset status
     SELECT ASTST INTO V_AST_STATUS
     FROM "ASM_T_ASSET"
     WHERE ASTID = :P_ASTID;
 
-    
+    -- Reject if not available
     IF :V_AST_STATUS <> 'AVAILABLE' THEN
-        SIGNAL SQL_ERROR_CODE 10003
-        SET MESSAGE_TEXT = 'Asset not available';
+
+        UPDATE "ASM_T_ASREQ"
+        SET STAT = 2
+        WHERE REQID = :P_REQID;
+
+        RETURN;
+
     END IF;
 
-    
+    -- Get user
     SELECT USRID INTO V_USRID
     FROM "ASM_T_ASREQ"
     WHERE REQID = :P_REQID;
 
-    
+    -- Insert assignment
     INSERT INTO "ASM_T_ASAMT" (
         ASTID,
         USRID,
@@ -69,12 +79,12 @@ BEGIN
         'SYSTEM'
     );
 
-   
+    -- Update request as assigned
     UPDATE "ASM_T_ASREQ"
     SET STAT = 3
     WHERE REQID = :P_REQID;
 
-   
+    -- Update asset status
     UPDATE "ASM_T_ASSET"
     SET ASTST = 'ASSIGNED'
     WHERE ASTID = :P_ASTID;

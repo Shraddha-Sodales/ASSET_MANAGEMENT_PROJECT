@@ -1,0 +1,13 @@
+VIEW EmployeeService_subcat AS SELECT
+  Assetsubcategory_0.ASCID,
+  Assetsubcategory_0.SCTID,
+  Assetsubcategory_0.SCNAM,
+  Assetsubcategory_0.CATID,
+  Assetsubcategory_0.ISDEL,
+  Assetsubcategory_0.CRTDT,
+  Assetsubcategory_0.CRTTM,
+  Assetsubcategory_0.CRTBY,
+  Assetsubcategory_0.CHNDT,
+  Assetsubcategory_0.CHNTM,
+  Assetsubcategory_0.CHNBY
+FROM ASM_M_Assetsubcategory AS Assetsubcategory_0

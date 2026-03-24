@@ -2,26 +2,30 @@
 # Content-Type: application/json
 
 # {
-# "CATID": 1,
-# "ASTID": 102
+# "CATID": "C001",
+# "ASTID": "102",
+# "PRITY":"High"
 # }
-//GET http://localhost:4004/odata/v4/manager/AllRequest
-GET http://localhost:4004/odata/v4/employee/getRequestsByUserId(USERID='1001') 
-# POST http://localhost:4004/odata/v4/manager/ApproveRequest
+//GET http://localhost:4004/odata/v2/manager/AllRequest
+//GET http://localhost:4004/odata/v2/employee/getRequestsByUserId(USERID='1001') 
+
+GET  http://localhost:4004/odata/v4/employee/subcat?$filter=CATID eq 'C001'
+
+    # POST http://localhost:4004/odata/v2/manager/ApproveRequest
+    # Content-Type: application/json
+
+    # {
+    # "REQID": "P001",
+    # "STATUS": 1
+    # }
+# POST http://localhost:4004/odata/v2/manager/AssignAsset
 # Content-Type: application/json
 
 # {
-#   "REQID": 1,
-#   "STATUS": 1
+#   "REQID": "P001",
+#   "ASTID": 102
 # }
-# POST http://localhost:4004/odata/v4/manager/AssignAsset
-# Content-Type: application/json
-
-# {
-#   "REQID": 1,
-#   "ASTID": 101
-# }
-# POST http://localhost:4004/odata/v4/manager/insertAsset
+# POST http://localhost:4004/odata/v2/manager/insertAsset
 # Content-Type: application/json
 
 # {

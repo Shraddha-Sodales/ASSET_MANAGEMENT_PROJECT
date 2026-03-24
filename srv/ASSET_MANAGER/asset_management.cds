@@ -10,20 +10,20 @@ service ManagerService {
   entity subcat as projection on db.M.Assetsubcategory;
   
     action ApproveRequest(
-    REQID : Integer,
+    REQID : String,
     STATUS : Integer
     ) returns String;
 
     action AssignAsset(
-    REQID : Integer, 
-    ASTID : Integer
+    REQID : String, 
+    ASTID : String
     ) returns String;
 
     action insertAsset (
-    P_ASTID    : Integer,
+    P_ASTID    : String,
     P_ASTNAME  : String,
-    P_CATID    : Integer,
-    P_SUBCATID : Integer,
+    P_CATID    : String,
+    P_SUBCATID : String,
     P_QTY      : Integer
 );
 }

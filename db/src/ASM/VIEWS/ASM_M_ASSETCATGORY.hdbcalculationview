@@ -32,11 +32,11 @@
 
 <logicalModel id="Projection_1">
   <attributes>
-    <attribute id="ACTID" order="1">
+    <attribute id="ACTID" order="1" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="Unique ID"/>
       <keyMapping columnObjectName="Projection_1" columnName="ACTID"/>
     </attribute>
-    <attribute id="CATID" order="2">
+    <attribute id="CATID" order="2" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="Category ID"/>
       <keyMapping columnObjectName="Projection_1" columnName="CATID"/>
     </attribute>
@@ -60,7 +60,7 @@
       <descriptions defaultDescription="Created Date"/>
       <keyMapping columnObjectName="Projection_1" columnName="CRTDT"/>
     </attribute>
-    <attribute id="CRTTM" order="8">
+    <attribute id="CRTTM" order="8" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="Created Time"/>
       <keyMapping columnObjectName="Projection_1" columnName="CRTTM"/>
     </attribute>
@@ -72,7 +72,7 @@
       <descriptions defaultDescription="Changed/Updated Date"/>
       <keyMapping columnObjectName="Projection_1" columnName="CHNDT"/>
     </attribute>
-    <attribute id="CHNTM" order="11">
+    <attribute id="CHNTM" order="11" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="Changed/Updated Time"/>
       <keyMapping columnObjectName="Projection_1" columnName="CHNTM"/>
     </attribute>

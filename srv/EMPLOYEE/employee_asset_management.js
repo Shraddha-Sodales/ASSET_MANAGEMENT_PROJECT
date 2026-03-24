@@ -8,7 +8,8 @@ module.exports = (srv) => {
 
     await cds.run(
       'CALL create_request(?, ?, ?, ?)',
-      [userId, CATID, ASTID, PRITY]
+      [userId, 
+        String(CATID), String(ASTID), String(PRITY)]
     );
 
     return 'Request Created';
@@ -19,6 +20,14 @@ module.exports = (srv) => {
 
     return await SELECT.from("EmployeeService.AllRequest")
       .where({ USRID: USERID });  
+
+  });
+  srv.on("getAssetByAssetId", async (req) => {
+
+    const { ASSTID } = req.data;
+
+    return await SELECT.from("EmployeeService.AllAsset")
+      .where({ASTID : ASSTID });  
 
   });
 

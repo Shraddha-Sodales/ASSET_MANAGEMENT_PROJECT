@@ -1,5 +1,5 @@
 PROCEDURE asset_approve_request (
-    IN P_REQID INTEGER,
+    IN P_REQID NVARCHAR(30),
     IN P_STATUS INTEGER,   
     IN P_USER INTEGER
 )
