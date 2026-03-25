@@ -84,7 +84,7 @@ BEGIN
     SET STAT = 3
     WHERE REQID = :P_REQID;
 
-    -- Update asset status
+
     UPDATE "ASM_T_ASSET"
     SET ASTST = 'ASSIGNED'
     WHERE ASTID = :P_ASTID;

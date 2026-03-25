@@ -25,5 +25,32 @@ service ManagerService {
     P_CATID    : String,
     P_SUBCATID : String,
     P_QTY      : Integer
+
+
+    
 );
+
+
+function getAllRequestsCount() returns Integer;
+
+
+function getPendingRequestsCount() returns Integer;
+
+function getAvailableAssetsByCategory()
+  returns array of {
+    CATEGORY : String;
+    COUNT    : Integer;
+  };
+
+
+
+function getAssetAllocationSummary()
+  returns {
+    AVAILABLE : Integer;
+    ASSIGNED  : Integer;
+  };
+
+
+
+
 }

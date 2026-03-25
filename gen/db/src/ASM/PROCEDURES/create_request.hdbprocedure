@@ -12,7 +12,7 @@ BEGIN
     DECLARE V_MAX_NUM INTEGER;
     DECLARE V_NEW_ID NVARCHAR(10);
 
-    -- ✅ SAFE MAX calculation
+  
     SELECT IFNULL(MAX(
         CASE 
             WHEN REQID LIKE 'P%' 
@@ -26,7 +26,7 @@ BEGIN
     -- Generate new ID like P001
     V_NEW_ID := 'P' || LPAD(:V_MAX_NUM + 1, 3, '0');
 
-    -- Insert
+   
     INSERT INTO "ASM_T_ASREQ" (
         REQID,
         USRID,
