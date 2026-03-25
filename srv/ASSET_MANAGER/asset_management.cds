@@ -1,4 +1,4 @@
-using {ASM as db} from '/home/user/asset_management/db/schema.cds';
+using {ASM as db} from '/home/user/projects/Asset-Management/db/schema.cds';
 
 service ManagerService {
   entity AllRequest as projection on db.T.ALLREQUESTS;

@@ -1,34 +1,125 @@
 module.exports = (srv) => {
 
   srv.on('CreateRequest', async (req) => {
+    try {
+      const userId = parseInt(req.user.id) || 1001;
+      const { CATID, ASTID, PRITY } = req.data;
 
-    const userId = parseInt(req.user.id) || 1001;
+      await cds.run(
+        'CALL create_request(?, ?, ?, ?)',
+        [
+          userId,
+          String(CATID),
+          String(ASTID),
+          String(PRITY)
+        ]
+      );
 
-    const { CATID, ASTID, PRITY } = req.data;
+      // Audit Log
+      await srv.tx(req).run(
+        INSERT.into('ASM_T_AUDIT').entries({
+          ID: req.id,
+          STATUS: 'SUCCESS',
+          MESSAGE: `Request created by User ${userId}`,
+          CREATEDAT: new Date()
+        })
+      );
 
-    await cds.run(
-      'CALL create_request(?, ?, ?, ?)',
-      [userId, 
-        String(CATID), String(ASTID), String(PRITY)]
-    );
+      return 'Request Created';
 
-    return 'Request Created';
+    } catch (error) {
+
+      // Error Log
+      await srv.tx(req).run(
+        INSERT.into('ASM_T_ERRLOG').entries({
+          ERRMS: error.message,
+          ERRST: error.stack,
+          STCOD: 500,
+          ISDEL: 0,
+          CRTDT: new Date(),
+          CRTTM: new Date(),
+          CRTBY: req.user?.id || 'SYSTEM'
+        })
+      );
+
+      return req.error(500, 'Failed to create request');
+    }
   });
-    srv.on("getRequestsByUserId", async (req) => {
 
-    const { USERID } = req.data;
+  srv.on('getRequestsByUserId', async (req) => {
+    try {
+      const { USERID } = req.data;
 
-    return await SELECT.from("EmployeeService.AllRequest")
-      .where({ USRID: USERID });  
+      const result = await SELECT.from('EmployeeService.AllRequest')
+        .where({ USRID: USERID });
 
+      // Audit Log
+      await srv.tx(req).run(
+        INSERT.into('ASM_T_AUDIT').entries({
+          ID: req.id,
+          STATUS: 'SUCCESS',
+          MESSAGE: `Requests fetched for User ${USERID}`,
+          CREATEDAT: new Date()
+        })
+      );
+
+      return result;
+
+    } catch (error) {
+
+      // Error Log
+      await srv.tx(req).run(
+        INSERT.into('ASM_T_ERRLOG').entries({
+          ERRMS: error.message,
+          ERRST: error.stack,
+          STCOD: 500,
+          ISDEL: 0,
+          CRTDT: new Date(),
+          CRTTM: new Date(),
+          CRTBY: req.user?.id || 'SYSTEM'
+        })
+      );
+
+      return req.error(500, 'Failed to fetch requests');
+    }
   });
-  srv.on("getAssetByAssetId", async (req) => {
 
-    const { ASSTID } = req.data;
+  srv.on('getAssetByAssetId', async (req) => {
+    try {
+      const { ASSTID } = req.data;
 
-    return await SELECT.from("EmployeeService.AllAsset")
-      .where({ASTID : ASSTID });  
+      const result = await SELECT.from('EmployeeService.AllAsset')
+        .where({ ASTID: ASSTID });
 
+      // Audit Log
+      await srv.tx(req).run(
+        INSERT.into('ASM_T_AUDIT').entries({
+          ID: req.id,
+          STATUS: 'SUCCESS',
+          MESSAGE: `Asset details fetched for Asset ${ASSTID}`,
+          CREATEDAT: new Date()
+        })
+      );
+
+      return result;
+
+    } catch (error) {
+
+      // Error Log
+      await srv.tx(req).run(
+        INSERT.into('ASM_T_ERRLOG').entries({
+          ERRMS: error.message,
+          ERRST: error.stack,
+          STCOD: 500,
+          ISDEL: 0,
+          CRTDT: new Date(),
+          CRTTM: new Date(),
+          CRTBY: req.user?.id || 'SYSTEM'
+        })
+      );
+
+      return req.error(500, 'Failed to fetch asset details');
+    }
   });
 
 };
