@@ -4,6 +4,10 @@ module.exports = (srv) => {
     req.query.where({ STAT: 0 });
   });
 
+
+
+
+
   srv.on('AssignAsset', async (req) => {
     try {
       const userId = Number(req.user.id) || 2001;
@@ -49,6 +53,10 @@ module.exports = (srv) => {
     }
   });
 
+
+
+
+
   srv.on('ApproveRequest', async (req) => {
     try {
       const userId = Number(req.user?.id) || 2001;
@@ -93,6 +101,10 @@ module.exports = (srv) => {
       return req.error(500, 'Failed to update request');
     }
   });
+
+
+
+
 
   srv.on('insertAsset', async (req) => {
     try {
@@ -151,6 +163,8 @@ module.exports = (srv) => {
 
 
 
+
+
   srv.on('getAllRequestsCount', async (req) => {
   try {
     const result = await SELECT
@@ -174,6 +188,10 @@ module.exports = (srv) => {
   }
 });
 
+
+
+
+
 srv.on('getPendingRequestsCount', async (req) => {
   try {
     const result = await SELECT
@@ -189,6 +207,8 @@ srv.on('getPendingRequestsCount', async (req) => {
     return req.error(500, 'Failed to fetch pending requests count');
   }
 });
+
+
 
 srv.on('getAvailableAssetsByCategory', async (req) => {
   try {
@@ -236,6 +256,47 @@ srv.on('getAssetAllocationSummary', async (req) => {
 });
 
 
+
+
+srv.on('getTotalAssets', async () => {
+  const result = await SELECT
+    .from('ManagerService.AllAsset')
+    .columns`count(ASTID) as TOTAL`;
+
+  return result[0].TOTAL;
+});
+
+
+srv.on('getAvailableAssets', async () => {
+  const result = await SELECT
+    .from('ManagerService.AllAsset')
+    .where({ ASTST: 'AVAILABLE' })
+    .columns`count(ASTID) as TOTAL`;
+
+  return result[0].TOTAL;
+});
+
+
+
+
+srv.on('getPendingRequests', async () => {
+  const result = await SELECT
+    .from('ManagerService.AllRequest')
+    .where({ STAT: 0 })
+    .columns`count(REQID) as TOTAL`;
+
+  return result[0].TOTAL;
+});
+
+
+srv.on('getAssetsInMaintenance', async () => {
+  const result = await SELECT
+    .from('ManagerService.AllAsset')
+    .where({ ASTST: 'MAINTENANCE' })
+    .columns`count(ASTID) as TOTAL`;
+
+  return result[0].TOTAL;
+});
 
 
  

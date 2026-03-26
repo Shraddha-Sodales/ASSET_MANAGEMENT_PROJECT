@@ -3,7 +3,7 @@ module.exports = (srv) => {
 
   srv.on('CreateRequest', async (req) => {
     try {
-      const userId = parseInt(req.user.id) || 1001;
+      const userId = req.user?.id || 'EMP-1001';
       const { CATID, ASTID, PRITY } = req.data;
 
       await cds.run(

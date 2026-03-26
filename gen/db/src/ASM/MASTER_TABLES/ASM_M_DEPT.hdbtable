@@ -1,0 +1,38 @@
+COLUMN TABLE ASM_M_DEPT (
+    ACTID BIGINT PRIMARY KEY
+        GENERATED ALWAYS AS IDENTITY
+        COMMENT 'Unique ID',
+ 
+    DEPTID NVARCHAR(30)
+        COMMENT 'Department ID',
+ 
+    DNAME NVARCHAR(100)
+        COMMENT 'Department Name',
+ 
+    DDESC NVARCHAR(255)
+        COMMENT 'Department Description',
+ 
+    STAT NVARCHAR(50)
+        COMMENT 'Status',
+ 
+    ISDEL NVARCHAR(1)
+        COMMENT 'Is Deleted Flag',
+ 
+    CRTDT DATE
+        COMMENT 'Created Date',
+ 
+    CRTTM TIME
+        COMMENT 'Created Time',
+ 
+    CRTBY NVARCHAR(30)
+        COMMENT 'Created By',
+ 
+    CHNDT DATE
+        COMMENT 'Changed/Updated Date',
+ 
+    CHNTM TIME
+        COMMENT 'Changed/Updated Time',
+ 
+    CHNBY NVARCHAR(30)
+        COMMENT 'Changed By'
+);

@@ -52,5 +52,16 @@ function getAssetAllocationSummary()
 
 
 
+function getTotalAssets() returns Integer;
+
+function getAvailableAssets() returns Integer;
+
+function getPendingRequests() returns Integer;
+
+function getAssetsInMaintenance() returns Integer;
+
+
+
+
 
 }

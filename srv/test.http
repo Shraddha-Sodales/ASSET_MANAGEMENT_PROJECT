@@ -6,10 +6,13 @@
 # "ASTID": "102",
 # "PRITY":"High"
 # }
+
+GET http://localhost:4004/odata/v4/manager/AllRequest
+//GET http://localhost:4004/odata/v4/ManagerService/AllAsset
 //GET http://localhost:4004/odata/v2/manager/AllRequest
 //GET http://localhost:4004/odata/v2/employee/getRequestsByUserId(USERID='1001') 
 
-GET  http://localhost:4004/odata/v4/employee/subcat?$filter=CATID eq 'C001'
+//GET  http://localhost:4004/odata/v4/employee/subcat?$filter=CATID eq 'C001'
 
     # POST http://localhost:4004/odata/v2/manager/ApproveRequest
     # Content-Type: application/json

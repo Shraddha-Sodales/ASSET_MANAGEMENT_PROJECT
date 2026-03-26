@@ -22,4 +22,6 @@ service EmployeeService {
   function getAssetByAssetId(ASSTID : String)
     returns array of AllAsset;
 
+    
+
 }
